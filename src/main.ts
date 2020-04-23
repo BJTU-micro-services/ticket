@@ -20,6 +20,9 @@ const consumer = new Consumer(
     autoCommit: false,
   }
 );
+consumer.on("error", error => {
+  console.error("Consumer error:", error);
+})
 const producer = new HighLevelProducer(kafkaClient);
 
 consumer.on("message", (message: Message) => {
